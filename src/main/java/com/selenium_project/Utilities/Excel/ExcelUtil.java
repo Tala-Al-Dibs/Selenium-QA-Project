@@ -1,33 +1,89 @@
 package com.selenium_project.Utilities.Excel;
 
-import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+import com.selenium_project.Entities.User;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.*;
 
 public class ExcelUtil {
 
-    public static Object[][] readExcel(String filePath) {
-        Object[][] data = new Object[1][2]; // One row for the test data, two columns for name and age
+     private static List<User> users = new ArrayList<>();
 
-        try (FileInputStream fis = new FileInputStream(filePath);
-             Workbook workbook = new XSSFWorkbook(fis)) {
+    public static void loadUsersFromExcel(String filePath) throws IOException {
+        FileInputStream file = new FileInputStream(filePath);
+        Workbook workbook = new XSSFWorkbook(file);
+        Sheet sheet = workbook.getSheetAt(0);
 
-            Sheet sheet = workbook.getSheetAt(0); // Get the first sheet
-            for (int i = 0; i < 2; i++) { // Loop through the first two rows
-                Row row = sheet.getRow(i);
-                if (row != null) {
-                    Cell keyCell = row.getCell(0); // First column (key)
-                    Cell valueCell = row.getCell(1); // Second column (value)
-                    if (keyCell != null && valueCell != null) {
-                        data[0][i] = valueCell.toString(); // Store value in the data array
-                    }
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
+        users.clear();
+
+        for (int i = 1; i < sheet.getPhysicalNumberOfRows(); i++) {
+            Row row = sheet.getRow(i);
+            User user = new User(
+                getCellValue(row.getCell(0)), // username
+                getCellValue(row.getCell(1)), // password
+                getCellValue(row.getCell(2)), // email
+                getCellValue(row.getCell(3)), // firstName
+                getCellValue(row.getCell(4)), // lastName
+                getCellValue(row.getCell(5)), // gender
+                getCellValue(row.getCell(6)), // dateOfBirth
+                getCellValue(row.getCell(7)), // location
+                getCellValue(row.getCell(8)), // phoneNumber
+                getCellValue(row.getCell(9)), // bio
+                getCellValue(row.getCell(10)), // post
+                getCellValue(row.getCell(11)), // comment
+                getCellValue(row.getCell(12)), // reply
+                getCellValue(row.getCell(13)), // editedBio
+                getCellValue(row.getCell(14)), // message
+                getCellValue(row.getCell(15)), // homeSearch
+                getCellValue(row.getCell(16))  // bookmarkSearch
+            );
+            users.add(user);
         }
-        return data;
+
+        workbook.close();
+        file.close();
+    }
+
+    public static List<User> getUsers() {
+        return users;
+    }
+
+    public static User findUserByUsername(String username) {
+        for (User user : users) {
+            if (user.getUsername().equals(username)) {
+                return user;
+            }
+        }
+        return null;
+    }
+
+    // Helper method to get the cell value as a String
+    private static String getCellValue(Cell cell) {
+        if (cell == null) {
+            return "";
+        }
+        switch (cell.getCellType()) {
+            case STRING:
+                return cell.getStringCellValue();
+            case NUMERIC:
+                return String.valueOf((int) cell.getNumericCellValue());
+            case BOOLEAN:
+                return String.valueOf(cell.getBooleanCellValue());
+            case FORMULA:
+                return cell.getCellFormula();
+            case BLANK:
+                return "";
+            default:
+                return "";
+        }
     }
 }
+
