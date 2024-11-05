@@ -1,4 +1,4 @@
-package com.selenium_project;
+package com.selenium_project.Utilities;
 
 import org.testng.ITestContext;
 import org.testng.ITestListener;
