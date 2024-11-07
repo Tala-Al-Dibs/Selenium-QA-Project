@@ -1,0 +1,7 @@
+com\selenium_project\signInPage\signInTest.class
+com\selenium_project\Utilities\CustomTestListener.class
+com\selenium_project\BasePages\BaseSignUpPage.class
+com\selenium_project\AppTest.class
+com\selenium_project\SignUpPage\SignUpPageTest.class
+com\selenium_project\BasePages\BaseTest.class
+com\selenium_project\BasePages\BaseSignInPage.class

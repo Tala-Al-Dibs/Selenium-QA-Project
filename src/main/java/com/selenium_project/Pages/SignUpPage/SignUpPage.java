@@ -20,7 +20,13 @@ public class SignUpPage {
 
     public void inputUsername(String username) {
         WebElement inputUsername = wait.until(ExpectedConditions.visibilityOfElementLocated(SignUpPageLocators.signupInputUsername));
+        inputUsername.clear();
         inputUsername.sendKeys(username);
+    }
+
+    public String getInputUsernameText( ) {
+        WebElement inputUsername = wait.until(ExpectedConditions.visibilityOfElementLocated(SignUpPageLocators.signupInputUsername));
+        return inputUsername.getText();
     }
 
     public void inputEmail(String email) {
@@ -46,6 +52,11 @@ public class SignUpPage {
     public void selectGenderMale() {
         WebElement genderMale = wait.until(ExpectedConditions.elementToBeClickable(SignUpPageLocators.signupGenderMale));
         genderMale.click();
+    }
+
+    public void clickCreateAccount() {
+        WebElement newAccountLink = wait.until(ExpectedConditions.elementToBeClickable(SignUpPageLocators.creatAccount));
+        newAccountLink.click();
     }
 
     public void selectGenderFemale() {
