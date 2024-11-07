@@ -7,6 +7,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import com.selenium_project.Utilities.Locators.SignUpPageLocators;
 
+@SuppressWarnings("unused")
 public class SignUpPage {
 
     private WebDriver driver;
