@@ -1,6 +1,7 @@
 package com.selenium_project.Utilities.Excel;
 
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -10,12 +11,12 @@ import com.selenium_project.Entities.User;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.*;
 
 public class ExcelUtil {
 
      private static List<User> users = new ArrayList<>();
+     private static List<String> posts = new ArrayList<>();
 
     public static void loadUsersFromExcel(String filePath) throws IOException {
         FileInputStream file = new FileInputStream(filePath);
@@ -55,7 +56,9 @@ public class ExcelUtil {
     public static List<User> getUsers() {
         return users;
     }
-
+    public static List<String> getPosts() {
+        return posts;
+    }
     public static User findUserByUsername(String username) {
         for (User user : users) {
             if (user.getUsername().equals(username)) {
@@ -85,5 +88,6 @@ public class ExcelUtil {
                 return "";
         }
     }
+    
 }
 
