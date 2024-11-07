@@ -71,7 +71,6 @@ public class AppTest
     //         Assert.assertNotEquals(username, "Talatt", "Second username should not be 'Talatt'");
     //     }
     // }
-
     @DataProvider(name = "excelData")
     public Object[][] excelDataProvider() throws IOException {
         // Load users from the Excel file
