@@ -1,6 +1,9 @@
 package com.selenium_project.Pages.PostPage;
 
 import java.time.Duration;
+import java.util.HashMap;
+import java.util.Map;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -17,60 +20,68 @@ public class PostPage {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
-
-    // Method to create post using description and privacy
     public void createPost(String description, String privacy) {
         WebElement descriptionInput = wait.until(ExpectedConditions.visibilityOfElementLocated(PostLocators.postInputDescription));
         descriptionInput.sendKeys(description);
-        WebElement privacyInput = wait.until(ExpectedConditions.elementToBeClickable(PostLocators.postInputPrivacy));
-        privacyInput.sendKeys(privacy);
+    
+        WebElement privacyDropdown = wait.until(ExpectedConditions.elementToBeClickable(PostLocators.postInputPrivacyDropdown));
+        privacyDropdown.click();
+    
+        if (privacy.equalsIgnoreCase("Public")) {
+            WebElement publicOption = wait.until(ExpectedConditions.elementToBeClickable(PostLocators.publicOption));
+            publicOption.click();
+        } else {
+            WebElement privateOption = wait.until(ExpectedConditions.elementToBeClickable(PostLocators.privateOption)); // Adjust the locator for "Private"
+            privateOption.click();
+        }
+    
         WebElement postButton = wait.until(ExpectedConditions.elementToBeClickable(PostLocators.postButton));
         postButton.click();
     }
+    
 
-    // Edit an existing post
     public void editPost(String newDescription) {
-        WebElement editButton = wait.until(ExpectedConditions.elementToBeClickable(PostLocators.editButton));
-        editButton.click();
+        WebElement threeDots = wait.until(ExpectedConditions.elementToBeClickable(PostLocators.threeDotsIcon));
+        threeDots.click();
+    
+        WebElement editOption = wait.until(ExpectedConditions.elementToBeClickable(PostLocators.editOptionInDropdown));
+        editOption.click();
+    
         WebElement descriptionInput = wait.until(ExpectedConditions.visibilityOfElementLocated(PostLocators.postInputDescription));
-        descriptionInput.clear();
-        descriptionInput.sendKeys(newDescription);
+        descriptionInput.clear(); 
+        descriptionInput.sendKeys(newDescription);  
     }
+    
+    
 
-    // React to a post with a specific reaction type
-    public void reactToPost(String reactionType) {
-        WebElement reactButton = wait.until(ExpectedConditions.elementToBeClickable(PostLocators.reactButton));
-        reactButton.click();
+   // React to a post with a specific reaction type
+public void reactToPost(String reactionType) {
+    WebElement reactButton = wait.until(ExpectedConditions.elementToBeClickable(PostLocators.reactButton));
+    reactButton.click();
 
-        switch (reactionType.toUpperCase()) {
-            case "LIKE":
-                wait.until(ExpectedConditions.elementToBeClickable(PostLocators.likeReaction)).click();
-                break;
-            case "LOVE":
-                wait.until(ExpectedConditions.elementToBeClickable(PostLocators.loveReaction)).click();
-                break;
-            case "HAHA":
-                wait.until(ExpectedConditions.elementToBeClickable(PostLocators.hahaReaction)).click();
-                break;
-            case "WOW":
-                wait.until(ExpectedConditions.elementToBeClickable(PostLocators.wowReaction)).click();
-                break;
-            case "SAD":
-                wait.until(ExpectedConditions.elementToBeClickable(PostLocators.sadReaction)).click();
-                break;
-            case "ANGRY":
-                wait.until(ExpectedConditions.elementToBeClickable(PostLocators.angryReaction)).click();
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid reaction type: " + reactionType);
-        }
+    Map<String, By> reactionMap = new HashMap<>();
+    reactionMap.put("LIKE", PostLocators.likeReaction);
+    reactionMap.put("LOVE", PostLocators.loveReaction);
+    reactionMap.put("HAHA", PostLocators.hahaReaction);
+    reactionMap.put("WOW", PostLocators.wowReaction);
+    reactionMap.put("SAD", PostLocators.sadReaction);
+    reactionMap.put("ANGRY", PostLocators.angryReaction);
+
+    By reactionLocator = reactionMap.get(reactionType.toUpperCase());
+
+    if (reactionLocator != null) {
+        wait.until(ExpectedConditions.elementToBeClickable(reactionLocator)).click();
+    } else {
+        throw new IllegalArgumentException("Invalid reaction type: " + reactionType);
     }
+}
 
     // Delete a post
     public void deletePost() {
         WebElement deleteButton = wait.until(ExpectedConditions.elementToBeClickable(PostLocators.deleteButton));
         deleteButton.click();
     }
+    
 
     public void createPostsFromExcel(String excelFilePath, String privacy) {
         try {
