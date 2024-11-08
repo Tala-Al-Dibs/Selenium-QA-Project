@@ -14,7 +14,6 @@ com\selenium_project\Pages\MessagePage\MeassagePage.class
 com\selenium_project\Utilities\Excel\ExcelUtil$1.class
 com\selenium_project\Entities\User.class
 com\selenium_project\Utilities\Locators\SignInPageLocators.class
-com\selenium_project\Utilities\Excel\ExcelUtil$2.class
 com\selenium_project\Utilities\Excel\ExcelUtil.class
 com\selenium_project\Pages\CommentPage\CommentPage.class
 com\selenium_project\Pages\ProfilePage\ProfilePage.class

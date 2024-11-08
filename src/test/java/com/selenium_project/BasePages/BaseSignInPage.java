@@ -1,13 +1,9 @@
 package com.selenium_project.BasePages;
 
 import java.io.IOException;
-import java.util.List;
 
-import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 
@@ -24,6 +20,7 @@ public class BaseSignInPage extends BaseTest {
         super.setUp(browser);
         super.setUpp();
         signInPage = new SignInPage(driver);
+        
     }
 
     @AfterMethod

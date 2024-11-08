@@ -1,21 +1,21 @@
-D:\Fall 2024\SWER312 - SOFTWARE TESTING & QUALITY ASSURANCE\selenium\src\main\java\com\selenium_project\App.java
-D:\Fall 2024\SWER312 - SOFTWARE TESTING & QUALITY ASSURANCE\selenium\src\main\java\com\selenium_project\Utilities\Locators\ProfilePageLocators.java
-D:\Fall 2024\SWER312 - SOFTWARE TESTING & QUALITY ASSURANCE\selenium\src\main\java\com\selenium_project\Utilities\Locators\SignInPageLocators.java
-D:\Fall 2024\SWER312 - SOFTWARE TESTING & QUALITY ASSURANCE\selenium\src\main\java\com\selenium_project\Pages\BookMarkPage\BookMarkPage.java
-D:\Fall 2024\SWER312 - SOFTWARE TESTING & QUALITY ASSURANCE\selenium\src\main\java\com\selenium_project\Utilities\Configurations\WebDriverFactory.java
-D:\Fall 2024\SWER312 - SOFTWARE TESTING & QUALITY ASSURANCE\selenium\src\main\java\com\selenium_project\Pages\ProfilePage\ProfilePage.java
-D:\Fall 2024\SWER312 - SOFTWARE TESTING & QUALITY ASSURANCE\selenium\src\main\java\com\selenium_project\Utilities\Excel\ExcelUtil.java
-D:\Fall 2024\SWER312 - SOFTWARE TESTING & QUALITY ASSURANCE\selenium\src\main\java\com\selenium_project\Utilities\Locators\PostLocators.java
-D:\Fall 2024\SWER312 - SOFTWARE TESTING & QUALITY ASSURANCE\selenium\src\main\java\com\selenium_project\Pages\PostPage\PostPage.java
-D:\Fall 2024\SWER312 - SOFTWARE TESTING & QUALITY ASSURANCE\selenium\src\main\java\com\selenium_project\Entities\User.java
-D:\Fall 2024\SWER312 - SOFTWARE TESTING & QUALITY ASSURANCE\selenium\src\main\java\com\selenium_project\Pages\LogInPage\SignInPage.java
-D:\Fall 2024\SWER312 - SOFTWARE TESTING & QUALITY ASSURANCE\selenium\src\main\java\com\selenium_project\Utilities\Locators\MeassageLocators.java
-D:\Fall 2024\SWER312 - SOFTWARE TESTING & QUALITY ASSURANCE\selenium\src\main\java\com\selenium_project\Utilities\Locators\MainPageLocators.java
-D:\Fall 2024\SWER312 - SOFTWARE TESTING & QUALITY ASSURANCE\selenium\src\main\java\com\selenium_project\Utilities\Locators\CommentLocators.java
-D:\Fall 2024\SWER312 - SOFTWARE TESTING & QUALITY ASSURANCE\selenium\src\main\java\com\selenium_project\Pages\MessagePage\MeassagePage.java
-D:\Fall 2024\SWER312 - SOFTWARE TESTING & QUALITY ASSURANCE\selenium\src\main\java\com\selenium_project\Utilities\Locators\SignUpPageLocators.java
-D:\Fall 2024\SWER312 - SOFTWARE TESTING & QUALITY ASSURANCE\selenium\src\main\java\com\selenium_project\Utilities\Configurations\WebsiteTestingConfigurations.java
-D:\Fall 2024\SWER312 - SOFTWARE TESTING & QUALITY ASSURANCE\selenium\src\main\java\com\selenium_project\Utilities\Locators\BookMarkLocators.java
-D:\Fall 2024\SWER312 - SOFTWARE TESTING & QUALITY ASSURANCE\selenium\src\main\java\com\selenium_project\Pages\CommentPage\CommentPage.java
-D:\Fall 2024\SWER312 - SOFTWARE TESTING & QUALITY ASSURANCE\selenium\src\main\java\com\selenium_project\Pages\SignUpPage\SignUpPage.java
-D:\Fall 2024\SWER312 - SOFTWARE TESTING & QUALITY ASSURANCE\selenium\src\main\java\com\selenium_project\Pages\MainPage\MainPage.java
+C:\Users\Microsoft\Downloads\Selenium-QA-Project\src\main\java\com\selenium_project\Pages\MessagePage\MeassagePage.java
+C:\Users\Microsoft\Downloads\Selenium-QA-Project\src\main\java\com\selenium_project\Pages\LogInPage\SignInPage.java
+C:\Users\Microsoft\Downloads\Selenium-QA-Project\src\main\java\com\selenium_project\Utilities\Locators\MeassageLocators.java
+C:\Users\Microsoft\Downloads\Selenium-QA-Project\src\main\java\com\selenium_project\Pages\SignUpPage\SignUpPage.java
+C:\Users\Microsoft\Downloads\Selenium-QA-Project\src\main\java\com\selenium_project\Utilities\Locators\PostLocators.java
+C:\Users\Microsoft\Downloads\Selenium-QA-Project\src\main\java\com\selenium_project\Utilities\Locators\SignUpPageLocators.java
+C:\Users\Microsoft\Downloads\Selenium-QA-Project\src\main\java\com\selenium_project\Utilities\Configurations\WebsiteTestingConfigurations.java
+C:\Users\Microsoft\Downloads\Selenium-QA-Project\src\main\java\com\selenium_project\Entities\User.java
+C:\Users\Microsoft\Downloads\Selenium-QA-Project\src\main\java\com\selenium_project\Utilities\Configurations\WebDriverFactory.java
+C:\Users\Microsoft\Downloads\Selenium-QA-Project\src\main\java\com\selenium_project\Utilities\Excel\ExcelUtil.java
+C:\Users\Microsoft\Downloads\Selenium-QA-Project\src\main\java\com\selenium_project\Utilities\Locators\BookMarkLocators.java
+C:\Users\Microsoft\Downloads\Selenium-QA-Project\src\main\java\com\selenium_project\Utilities\Locators\ProfilePageLocators.java
+C:\Users\Microsoft\Downloads\Selenium-QA-Project\src\main\java\com\selenium_project\Pages\BookMarkPage\BookMarkPage.java
+C:\Users\Microsoft\Downloads\Selenium-QA-Project\src\main\java\com\selenium_project\Pages\ProfilePage\ProfilePage.java
+C:\Users\Microsoft\Downloads\Selenium-QA-Project\src\main\java\com\selenium_project\Utilities\Locators\SignInPageLocators.java
+C:\Users\Microsoft\Downloads\Selenium-QA-Project\src\main\java\com\selenium_project\Pages\CommentPage\CommentPage.java
+C:\Users\Microsoft\Downloads\Selenium-QA-Project\src\main\java\com\selenium_project\Pages\PostPage\PostPage.java
+C:\Users\Microsoft\Downloads\Selenium-QA-Project\src\main\java\com\selenium_project\App.java
+C:\Users\Microsoft\Downloads\Selenium-QA-Project\src\main\java\com\selenium_project\Utilities\Locators\CommentLocators.java
+C:\Users\Microsoft\Downloads\Selenium-QA-Project\src\main\java\com\selenium_project\Pages\MainPage\MainPage.java
+C:\Users\Microsoft\Downloads\Selenium-QA-Project\src\main\java\com\selenium_project\Utilities\Locators\MainPageLocators.java

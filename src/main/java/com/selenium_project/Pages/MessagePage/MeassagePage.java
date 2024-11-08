@@ -18,9 +18,19 @@ public class MeassagePage {
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
+
+    public void clickMessageIcon() {
+        WebElement messageIcon = wait.until(ExpectedConditions.visibilityOfElementLocated(MeassageLocators.messageIconOnHeader));
+        messageIcon.click();
+    }
+
     public void selectFirstFriend() {
         WebElement firstFriend = wait.until(ExpectedConditions.elementToBeClickable(MeassageLocators.firstFrind));
         firstFriend.click();
+    }
+
+    public Boolean firstFrindIsSelected () {
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(MeassageLocators.chatRoom)).isDisplayed();
     }
 
     public void inputMessage(String message) {

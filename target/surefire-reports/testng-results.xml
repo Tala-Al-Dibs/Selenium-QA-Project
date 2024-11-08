@@ -2,12 +2,12 @@
 <testng-results ignored="0" total="8" passed="8" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2024-11-07T21:55:30 IST" name="Surefire suite" finished-at="2024-11-07T21:55:43 IST" duration-ms="13633">
+  <suite started-at="2024-11-08T20:23:55 IST" name="Surefire suite" finished-at="2024-11-08T20:24:11 IST" duration-ms="16663">
     <groups>
     </groups>
-    <test started-at="2024-11-07T21:55:30 IST" name="Surefire test" finished-at="2024-11-07T21:55:43 IST" duration-ms="13633">
+    <test started-at="2024-11-08T20:23:55 IST" name="Surefire test" finished-at="2024-11-08T20:24:11 IST" duration-ms="16663">
       <class name="com.selenium_project.signInPage.signInTest">
-        <test-method is-config="true" signature="setUp(java.lang.String)[pri:0, instance:com.selenium_project.signInPage.signInTest@54c562f7]" started-at="2024-11-07T21:55:31 IST" name="setUp" finished-at="2024-11-07T21:55:34 IST" duration-ms="3762" status="PASS">
+        <test-method is-config="true" signature="setUp(java.lang.String)[pri:0, instance:com.selenium_project.signInPage.signInTest@63a65a25]" started-at="2024-11-08T20:23:56 IST" name="setUp" finished-at="2024-11-08T20:24:01 IST" duration-ms="5109" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -18,7 +18,7 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method is-config="true" signature="setUpSignIn(java.lang.String)[pri:0, instance:com.selenium_project.signInPage.signInTest@54c562f7]" started-at="2024-11-07T21:55:34 IST" name="setUpSignIn" finished-at="2024-11-07T21:55:35 IST" duration-ms="264" status="PASS">
+        <test-method is-config="true" signature="setUpSignIn(java.lang.String)[pri:0, instance:com.selenium_project.signInPage.signInTest@63a65a25]" started-at="2024-11-08T20:24:01 IST" name="setUpSignIn" finished-at="2024-11-08T20:24:01 IST" duration-ms="300" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -29,7 +29,7 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUpSignIn -->
-        <test-method signature="aenterUserNameToSignInPage(com.selenium_project.Entities.User)[pri:0, instance:com.selenium_project.signInPage.signInTest@54c562f7]" started-at="2024-11-07T21:55:35 IST" name="aenterUserNameToSignInPage" data-provider="excelData" finished-at="2024-11-07T21:55:35 IST" duration-ms="362" status="PASS">
+        <test-method signature="aenterUserNameToSignInPage(com.selenium_project.Entities.User)[pri:0, instance:com.selenium_project.signInPage.signInTest@63a65a25]" started-at="2024-11-08T20:24:01 IST" name="aenterUserNameToSignInPage" data-provider="excelData" finished-at="2024-11-08T20:24:02 IST" duration-ms="358" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -40,11 +40,11 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- aenterUserNameToSignInPage -->
-        <test-method is-config="true" signature="tearDownSignIn()[pri:0, instance:com.selenium_project.signInPage.signInTest@54c562f7]" started-at="2024-11-07T21:55:35 IST" name="tearDownSignIn" finished-at="2024-11-07T21:55:35 IST" duration-ms="216" status="PASS">
+        <test-method is-config="true" signature="tearDownSignIn()[pri:0, instance:com.selenium_project.signInPage.signInTest@63a65a25]" started-at="2024-11-08T20:24:02 IST" name="tearDownSignIn" finished-at="2024-11-08T20:24:02 IST" duration-ms="312" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDownSignIn -->
-        <test-method is-config="true" signature="setUp(java.lang.String)[pri:0, instance:com.selenium_project.signInPage.signInTest@54c562f7]" started-at="2024-11-07T21:55:35 IST" name="setUp" finished-at="2024-11-07T21:55:38 IST" duration-ms="2344" status="PASS">
+        <test-method is-config="true" signature="setUp(java.lang.String)[pri:0, instance:com.selenium_project.signInPage.signInTest@63a65a25]" started-at="2024-11-08T20:24:02 IST" name="setUp" finished-at="2024-11-08T20:24:05 IST" duration-ms="2723" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -55,7 +55,7 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method is-config="true" signature="setUpSignIn(java.lang.String)[pri:0, instance:com.selenium_project.signInPage.signInTest@54c562f7]" started-at="2024-11-07T21:55:38 IST" name="setUpSignIn" finished-at="2024-11-07T21:55:38 IST" duration-ms="214" status="PASS">
+        <test-method is-config="true" signature="setUpSignIn(java.lang.String)[pri:0, instance:com.selenium_project.signInPage.signInTest@63a65a25]" started-at="2024-11-08T20:24:05 IST" name="setUpSignIn" finished-at="2024-11-08T20:24:05 IST" duration-ms="292" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -66,7 +66,7 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUpSignIn -->
-        <test-method signature="benterPasswordToSignInPage(com.selenium_project.Entities.User)[pri:0, instance:com.selenium_project.signInPage.signInTest@54c562f7]" started-at="2024-11-07T21:55:38 IST" name="benterPasswordToSignInPage" data-provider="excelData" finished-at="2024-11-07T21:55:38 IST" duration-ms="347" status="PASS">
+        <test-method signature="benterPasswordToSignInPage(com.selenium_project.Entities.User)[pri:0, instance:com.selenium_project.signInPage.signInTest@63a65a25]" started-at="2024-11-08T20:24:05 IST" name="benterPasswordToSignInPage" data-provider="excelData" finished-at="2024-11-08T20:24:05 IST" duration-ms="370" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -77,11 +77,11 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- benterPasswordToSignInPage -->
-        <test-method is-config="true" signature="tearDownSignIn()[pri:0, instance:com.selenium_project.signInPage.signInTest@54c562f7]" started-at="2024-11-07T21:55:38 IST" name="tearDownSignIn" finished-at="2024-11-07T21:55:39 IST" duration-ms="326" status="PASS">
+        <test-method is-config="true" signature="tearDownSignIn()[pri:0, instance:com.selenium_project.signInPage.signInTest@63a65a25]" started-at="2024-11-08T20:24:05 IST" name="tearDownSignIn" finished-at="2024-11-08T20:24:06 IST" duration-ms="263" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDownSignIn -->
-        <test-method is-config="true" signature="setUp(java.lang.String)[pri:0, instance:com.selenium_project.signInPage.signInTest@54c562f7]" started-at="2024-11-07T21:55:39 IST" name="setUp" finished-at="2024-11-07T21:55:41 IST" duration-ms="2366" status="PASS">
+        <test-method is-config="true" signature="setUp(java.lang.String)[pri:0, instance:com.selenium_project.signInPage.signInTest@63a65a25]" started-at="2024-11-08T20:24:06 IST" name="setUp" finished-at="2024-11-08T20:24:08 IST" duration-ms="2740" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -92,7 +92,7 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method is-config="true" signature="setUpSignIn(java.lang.String)[pri:0, instance:com.selenium_project.signInPage.signInTest@54c562f7]" started-at="2024-11-07T21:55:41 IST" name="setUpSignIn" finished-at="2024-11-07T21:55:41 IST" duration-ms="262" status="PASS">
+        <test-method is-config="true" signature="setUpSignIn(java.lang.String)[pri:0, instance:com.selenium_project.signInPage.signInTest@63a65a25]" started-at="2024-11-08T20:24:08 IST" name="setUpSignIn" finished-at="2024-11-08T20:24:09 IST" duration-ms="241" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -103,7 +103,7 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUpSignIn -->
-        <test-method signature="centervaluesSignIn(com.selenium_project.Entities.User)[pri:0, instance:com.selenium_project.signInPage.signInTest@54c562f7]" started-at="2024-11-07T21:55:41 IST" name="centervaluesSignIn" data-provider="excelData" finished-at="2024-11-07T21:55:43 IST" duration-ms="1495" status="PASS">
+        <test-method signature="centervaluesSignIn(com.selenium_project.Entities.User)[pri:0, instance:com.selenium_project.signInPage.signInTest@63a65a25]" started-at="2024-11-08T20:24:09 IST" name="centervaluesSignIn" data-provider="excelData" finished-at="2024-11-08T20:24:10 IST" duration-ms="1740" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -114,25 +114,25 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- centervaluesSignIn -->
-        <test-method is-config="true" signature="tearDownSignIn()[pri:0, instance:com.selenium_project.signInPage.signInTest@54c562f7]" started-at="2024-11-07T21:55:43 IST" name="tearDownSignIn" finished-at="2024-11-07T21:55:43 IST" duration-ms="442" status="PASS">
+        <test-method is-config="true" signature="tearDownSignIn()[pri:0, instance:com.selenium_project.signInPage.signInTest@63a65a25]" started-at="2024-11-08T20:24:10 IST" name="tearDownSignIn" finished-at="2024-11-08T20:24:11 IST" duration-ms="956" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDownSignIn -->
       </class> <!-- com.selenium_project.signInPage.signInTest -->
       <class name="com.selenium_project.AppTest">
-        <test-method signature="isFlase()[pri:0, instance:com.selenium_project.AppTest@79ad8b2f]" started-at="2024-11-07T21:55:30 IST" name="isFlase" finished-at="2024-11-07T21:55:30 IST" duration-ms="5" status="PASS">
+        <test-method signature="isFlase()[pri:0, instance:com.selenium_project.AppTest@402e37bc]" started-at="2024-11-08T20:23:55 IST" name="isFlase" finished-at="2024-11-08T20:23:55 IST" duration-ms="11" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- isFlase -->
-        <test-method signature="s()[pri:0, instance:com.selenium_project.AppTest@79ad8b2f]" started-at="2024-11-07T21:55:30 IST" name="s" finished-at="2024-11-07T21:55:30 IST" duration-ms="1" status="PASS">
+        <test-method signature="s()[pri:0, instance:com.selenium_project.AppTest@402e37bc]" started-at="2024-11-08T20:23:55 IST" name="s" finished-at="2024-11-08T20:23:55 IST" duration-ms="1" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- s -->
-        <test-method signature="shouldAnswerWithTrue()[pri:0, instance:com.selenium_project.AppTest@79ad8b2f]" started-at="2024-11-07T21:55:30 IST" name="shouldAnswerWithTrue" finished-at="2024-11-07T21:55:30 IST" duration-ms="1" status="PASS">
+        <test-method signature="shouldAnswerWithTrue()[pri:0, instance:com.selenium_project.AppTest@402e37bc]" started-at="2024-11-08T20:23:55 IST" name="shouldAnswerWithTrue" finished-at="2024-11-08T20:23:55 IST" duration-ms="1" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- shouldAnswerWithTrue -->
-        <test-method signature="testFromExcel(com.selenium_project.Entities.User)[pri:0, instance:com.selenium_project.AppTest@79ad8b2f]" started-at="2024-11-07T21:55:31 IST" name="testFromExcel" data-provider="excelData" finished-at="2024-11-07T21:55:31 IST" duration-ms="2" status="PASS">
+        <test-method signature="testFromExcel(com.selenium_project.Entities.User)[pri:0, instance:com.selenium_project.AppTest@402e37bc]" started-at="2024-11-08T20:23:56 IST" name="testFromExcel" data-provider="excelData" finished-at="2024-11-08T20:23:56 IST" duration-ms="2" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -143,7 +143,7 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testFromExcel -->
-        <test-method signature="testFromExcel(com.selenium_project.Entities.User)[pri:0, instance:com.selenium_project.AppTest@79ad8b2f]" started-at="2024-11-07T21:55:31 IST" name="testFromExcel" data-provider="excelData" finished-at="2024-11-07T21:55:31 IST" duration-ms="1" status="PASS">
+        <test-method signature="testFromExcel(com.selenium_project.Entities.User)[pri:0, instance:com.selenium_project.AppTest@402e37bc]" started-at="2024-11-08T20:23:56 IST" name="testFromExcel" data-provider="excelData" finished-at="2024-11-08T20:23:56 IST" duration-ms="1" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -156,11 +156,11 @@
         </test-method> <!-- testFromExcel -->
       </class> <!-- com.selenium_project.AppTest -->
       <class name="com.selenium_project.BasePages.BaseTest">
-        <test-method is-config="true" signature="setUpp()[pri:0, instance:com.selenium_project.BasePages.BaseTest@63a65a25]" started-at="2024-11-07T21:55:30 IST" name="setUpp" finished-at="2024-11-07T21:55:30 IST" duration-ms="15" status="PASS">
+        <test-method is-config="true" signature="setUpp()[pri:0, instance:com.selenium_project.BasePages.BaseTest@6b26e945]" started-at="2024-11-08T20:23:55 IST" name="setUpp" finished-at="2024-11-08T20:23:55 IST" duration-ms="21" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUpp -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.selenium_project.BasePages.BaseTest@63a65a25]" started-at="2024-11-07T21:55:43 IST" name="tearDown" finished-at="2024-11-07T21:55:43 IST" duration-ms="1" status="PASS">
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.selenium_project.BasePages.BaseTest@6b26e945]" started-at="2024-11-08T20:24:11 IST" name="tearDown" finished-at="2024-11-08T20:24:11 IST" duration-ms="0" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
