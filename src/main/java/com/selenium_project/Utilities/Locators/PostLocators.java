@@ -7,10 +7,11 @@ public class PostLocators {
 
      // Create Post
      public static final By postInputDescription = By.className("description-input");
-     public static final By postInputPrivacyDropdown = By.className("custom-dropdown-selected");
-     public static final By publicOption = By.xpath("//li[text()='Public']");
-     public static final By privateOption = By.xpath("//li[text()='Private']");
-     public static final By postButton = By.cssSelector(".postPlaceButtons button"); 
+     // public static final By postInputPrivacyDropdown = By.className("custom-dropdown-selected");
+     // public static final By publicOption = By.xpath("//li[text()='Public']");
+     // public static final By privateOption = By.xpath("//li[text()='Private']");
+     // public static final By postButton = By.cssSelector(".postPlaceButtons button"); 
+     public static final By postButton = By.className("submit-button"); 
 
      // Edit Post
      public static final By postContainer = By.className("post-container");
