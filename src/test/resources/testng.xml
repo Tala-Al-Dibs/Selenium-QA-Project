@@ -9,6 +9,12 @@
         <classes>
             <class name="com.selenium_project.SignUpPage.SignUpPageTest" />
         </classes>
+        
+    </test>
+    <test name="Post Tests">
+        <classes>
+            <class name="com.selenium_project.PostPages.PostPageTest" />
+        </classes>
     </test>
 </suite>
 
