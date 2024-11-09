@@ -30,10 +30,19 @@ public class BaseTest {
         driver.manage().window().maximize();
     }
 
-    // @AfterSuite
-    // public static void tearDown () {
-    //     WebDriverFactory.quitDriver();
-    // }
+ SignInTests
+    @AfterSuite
+    public static void tearDown () {
+        WebDriverFactory.quitDriver();
+    }
 
     
 }
+=======
+    @AfterSuite
+    public static void tearDown () {
+        WebDriverFactory.quitDriver();
+    }
+    
+}
+ Post-Test

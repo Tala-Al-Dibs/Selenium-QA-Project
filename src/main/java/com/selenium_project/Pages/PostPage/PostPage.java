@@ -189,20 +189,20 @@ public void reactToPost(String reactionType) {
     
     
 
-    public void createPostsFromExcel(String excelFilePath, String privacy) {
-        try {
-            ExcelUtil.loadUsersFromExcel(excelFilePath);
+    // public void createPostsFromExcel(String excelFilePath, String privacy) {
+    //     try {
+    //         ExcelUtil.loadUsersFromExcel(excelFilePath);
 
-            for (String postDescription : ExcelUtil.getPosts()) {
-                createPost(postDescription, privacy);
-                System.out.println("Created post with description: " + postDescription);
-            }
+    //         for (String postDescription : ExcelUtil.getPosts()) {
+    //             createPost(postDescription, privacy);
+    //             System.out.println("Created post with description: " + postDescription);
+    //         }
 
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("Error reading posts from Excel: " + e.getMessage());
-        }
-    }
+    //     } catch (Exception e) {
+    //         e.printStackTrace();
+    //         System.out.println("Error reading posts from Excel: " + e.getMessage());
+    //     }
+    // }
 
     public WebElement findPostByDescription(String description) {
         try {
