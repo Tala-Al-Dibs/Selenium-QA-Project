@@ -14,6 +14,7 @@ public class SignUpPageLocators {
     public static By signupInputDateOfBirth = By.id("signup-input-dateOfBirth");
     public static By signupInputLocation = By.id("signup-input-location");
     public static By signupInputPhoneNumber = By.id("signup-input-phoneNumber");
-    public static By signupButton = By.className("signup-button");
+    public static By signupButton = By.cssSelector(".signup-button");
+    public static By creatAccount = By.className("signin-link");
 
 }

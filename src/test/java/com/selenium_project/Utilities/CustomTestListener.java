@@ -3,35 +3,35 @@ package com.selenium_project.Utilities;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class CustomTestListener implements ITestListener {
-    private int passed = 0;
-    private int failed = 0;
-    private int skipped = 0;
+    private AtomicInteger passed = new AtomicInteger(0);
+    private AtomicInteger failed = new AtomicInteger(0);
+    private AtomicInteger skipped = new AtomicInteger(0);
 
     @Override
     public void onTestSuccess(ITestResult result) {
-        passed++;
+        passed.incrementAndGet();
     }
 
     @Override
     public void onTestFailure(ITestResult result) {
-        failed++;
+        failed.incrementAndGet();
     }
 
     @Override
     public void onTestSkipped(ITestResult result) {
-        skipped++;
+        skipped.incrementAndGet();
     }
 
     @Override
     public void onFinish(ITestContext context) {
         System.out.println("=====================================");
         System.out.println("tests=" + context.getAllTestMethods().length +
-                           " passed=" + passed +
-                           " failed=" + failed +
-                           " skipped=" + skipped);
+                           " passed=" + passed.get() +
+                           " failed=" + failed.get() +
+                           " skipped=" + skipped.get());
         System.out.println("=====================================");
     }
 }
-
