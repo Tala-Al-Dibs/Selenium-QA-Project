@@ -2,7 +2,6 @@ package com.selenium_project.BasePages;
 
 import java.io.IOException;
 
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;

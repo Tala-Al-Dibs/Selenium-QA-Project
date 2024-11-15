@@ -1,10 +1,14 @@
 package com.selenium_project.Pages.SignUpPage;
 
 import java.time.Duration;
+
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import com.selenium_project.Utilities.Locators.SignInPageLocators;
 import com.selenium_project.Utilities.Locators.SignUpPageLocators;
 
 @SuppressWarnings("unused")
@@ -22,11 +26,12 @@ public class SignUpPage {
         WebElement inputUsername = wait.until(ExpectedConditions.visibilityOfElementLocated(SignUpPageLocators.signupInputUsername));
         inputUsername.clear();
         inputUsername.sendKeys(username);
+        wait.until(ExpectedConditions.textToBePresentInElementValue(SignUpPageLocators.signupInputUsername, username));
     }
 
     public String getInputUsernameText( ) {
         WebElement inputUsername = wait.until(ExpectedConditions.visibilityOfElementLocated(SignUpPageLocators.signupInputUsername));
-        return inputUsername.getText();
+        return inputUsername.getAttribute("value");
     }
 
     public void inputEmail(String email) {
@@ -55,7 +60,7 @@ public class SignUpPage {
     }
 
     public void clickCreateAccount() {
-        WebElement newAccountLink = wait.until(ExpectedConditions.elementToBeClickable(SignUpPageLocators.creatAccount));
+        WebElement newAccountLink = wait.until(ExpectedConditions.visibilityOfElementLocated(SignUpPageLocators.creatAccount));
         newAccountLink.click();
     }
 
@@ -81,6 +86,18 @@ public class SignUpPage {
 
     public void clickSignUpButton() {
         WebElement signUpButton = wait.until(ExpectedConditions.elementToBeClickable(SignUpPageLocators.signupButton));
-        signUpButton.click();
+        scrollToElement(signUpButton);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", signUpButton);
+    }
+    
+
+    public void scrollToElement(WebElement element) {
+    ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
+}
+
+
+    public Boolean getHelloUsername() {
+        WebElement helloUser = wait.until(ExpectedConditions.visibilityOfElementLocated(SignInPageLocators.helloUsername));
+        return helloUser.isDisplayed();
     }
 }

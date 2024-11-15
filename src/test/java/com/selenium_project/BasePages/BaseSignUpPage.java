@@ -7,7 +7,6 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 
-import com.selenium_project.Pages.LogInPage.SignInPage;
 import com.selenium_project.Pages.SignUpPage.SignUpPage;
 import com.selenium_project.Utilities.Configurations.WebDriverFactory;
 
@@ -17,14 +16,14 @@ public class BaseSignUpPage extends BaseTest {
 
     @BeforeMethod
     @Parameters("chrome")
-    public void setUpSignIn (@Optional("chrome") String browser) throws IOException {
+    public void setUpSignUp (@Optional("chrome") String browser) throws IOException {
         super.setUp(browser);
         super.setUpp();
         signUpPage = new SignUpPage(driver);
     }
 
     @AfterMethod
-    public void tearDownSignIn () {
+    public void tearDownSigUp () {
         WebDriverFactory.quitDriver();
     }
     
