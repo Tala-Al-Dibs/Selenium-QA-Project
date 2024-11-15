@@ -1,105 +1,127 @@
 package com.selenium_project.PostPages;
 
+import java.io.IOException;
+import java.time.Duration;
+import java.util.List;
+
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
 import com.selenium_project.BasePages.BasePostPage;
 import com.selenium_project.Utilities.Excel.ExcelUtil;
+import com.selenium_project.Utilities.Locators.PostLocators;
 import com.selenium_project.Utilities.Configurations.WebsiteTestingConfigurations;
 import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 public class PostPageTest extends BasePostPage {
 
-    @BeforeClass
-    public void loadTestData() throws Exception {
-        // Load data from the Excel file
-        ExcelUtil.loadUsersFromExcel(WebsiteTestingConfigurations.ExcelFilePath);
-    }
-
     @DataProvider(name = "postDescriptions")
-    public Object[][] postDescriptions() {
-        return ExcelUtil.getPosts()
-            .stream()
-            .map(desc -> new Object[]{desc})
-            .toArray(Object[][]::new);
+    public Object[][] postDescriptionsProvider() throws IOException {
+        ExcelUtil.loadPostsFromExcel(WebsiteTestingConfigurations.ExcelFilePath);  
+        List<String> postDescriptions = ExcelUtil.getPosts(); 
+
+        Object[][] data = new Object[postDescriptions.size()][1];
+        for (int i = 0; i < postDescriptions.size(); i++) {
+            data[i][0] = postDescriptions.get(i);
+        }
+        return data;
     }
 
     @Test(dataProvider = "postDescriptions")
-    public void testCreatePost(String description) {
-        postpage.createPost(description, "Public");
+    public void testCreatePost(String description) throws IOException, InterruptedException {
+        postpage.createPost(description);
 
-        // Verify post creation
-        Assert.assertNotNull(postpage.findPostByDescription(description),
-                "Post with description '" + description + "' was not created.");
-    }
-
-    @Test
-    public void testEditPost() {
-        String initialDescription = "Initial description";
-        String newDescription = "Updated post description";
-
-        postpage.createPost(initialDescription, "Public");
-        WebElement post = postpage.findPostByDescription(initialDescription);
-        Assert.assertNotNull(post, "Original post not found.");
-
-        postpage.editPost(newDescription);
-
-        // Verify that the post is updated
-        WebElement updatedPost = postpage.findPostByDescription(newDescription);
-        Assert.assertNotNull(updatedPost, "Post description was not updated.");
-    }
-
-    @Test
-    public void testReactToPost() {
-        String description = "Post for reaction";
-        postpage.createPost(description, "Public");
-
-        WebElement post = postpage.findPostByDescription(description);
-        Assert.assertNotNull(post, "Post to react to not found.");
-
-        String reactionType = "LIKE";
-        postpage.reactToPost(reactionType);
-
-        // Optional: Add assertions to verify reaction is applied, if applicable.
-    }
-
-    // @Test
-    // public void testDeletePost() {
-    //     String description = "Post to delete";
-    //     postpage.createPost(description, "Public");
-
-    //     WebElement post = postpage.findPostByDescription(description);
-    //     Assert.assertNotNull(post, "Post to delete not found.");
-
-    //     postpage.deletePost();
-
-    //     // Verify post deletion
-    //     WebElement deletedPost = postpage.findPostByDescription(description);
-    //     Assert.assertNull(deletedPost, "Post was not deleted.");
-    // }
-    @Test
-    public void testDeletePost() {
-        String description = "Post to delete";
-        
-        // Create the post
-        postpage.createPost(description, "Public");
-    
-        // Find the post and ensure it exists before attempting to delete it
-        WebElement post = postpage.findPostByDescription(description);
-        Assert.assertNotNull(post, "Post to delete not found before deletion.");
-    
-        // Perform the delete operation
-        postpage.deletePost();
-    
-        // Wait for the post to disappear (this is where it was failing)
         try {
-            WebElement deletedPost = postpage.findPostByDescription(description);
-            Assert.assertNull(deletedPost, "Post was not deleted.");
-        } catch (Exception e) {
-            System.out.println("Error when verifying post deletion: " + e.getMessage());
-            Assert.fail("Error occurred when checking if the post was deleted.");
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+            wait.until(ExpectedConditions.alertIsPresent());
+            
+            Alert alert = driver.switchTo().alert();
+            alert.accept();
+
+            Thread.sleep(1000);
+
+        } catch (NoAlertPresentException e) {
+            System.out.println("No alert present: " + e.getMessage());
         }
+        
+        Assert.assertTrue(postpage.isPostDisplayedByDescription(description), "Post creation failed: Post not found.");
+    }
+
+    
+    @Test(dataProvider = "postDescriptions")
+    public void testCreateAndEditPost(String postDescription) throws InterruptedException {
+        postpage.createPost(postDescription);
+        
+        try {
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+            wait.until(ExpectedConditions.alertIsPresent());
+            
+            Alert alert = driver.switchTo().alert();
+            alert.accept();
+            Thread.sleep(1000);
+        } catch (NoAlertPresentException e) {
+            System.out.println("No alert present: " + e.getMessage());
+        }
+    
+        WebElement postContainer = driver.findElement(PostLocators.postContainer);
+        assert postContainer.isDisplayed(); 
+    
+        String newDescription = "Updated: " + postDescription; 
+        postpage.editPost(newDescription);
+    
+        
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement editedPostContainer = wait.until(ExpectedConditions.visibilityOfElementLocated(PostLocators.postContainer));
+        WebElement editedPostDescription = editedPostContainer.findElement(PostLocators.postDescription);
+    
+        assert editedPostDescription.getText().equals(newDescription);
     }
     
-}    
+
+    
+    @Test(dataProvider = "postDescriptions")
+    public void testDeletePost(String description) throws InterruptedException {
+        postpage.createPost(description);
+        try {
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+            wait.until(ExpectedConditions.alertIsPresent());
+            
+            Alert alert = driver.switchTo().alert();
+            alert.accept();
+            Thread.sleep(1000);
+        } catch (NoAlertPresentException e) {
+            System.out.println("No alert present: " + e.getMessage());
+        }
+        String descriptionBeforeDelete = postpage.getCurrentPostDescription();
+        
+        postpage.deletePost();
+        
+        Assert.assertTrue(postpage.isPostDeleted(descriptionBeforeDelete), "Post deletion failed: Post still exists.");
+    }
+    
+
+    @Test(dataProvider = "postDescriptions")
+    public void testReactToPost(String description) throws InterruptedException {
+        postpage.createPost(description);
+        
+        try {
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+            wait.until(ExpectedConditions.alertIsPresent());
+            
+            Alert alert = driver.switchTo().alert();
+            alert.accept();
+            Thread.sleep(1000);
+        } catch (NoAlertPresentException e) {
+            System.out.println("No alert present: " + e.getMessage());
+        }
+        
+        postpage.reactToPost("LOVE");
+        
+        Assert.assertTrue(postpage.isPostDisplayedByDescription(description), "Post creation failed: Post not found.");
+    }
+}

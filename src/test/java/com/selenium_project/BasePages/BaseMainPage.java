@@ -14,6 +14,7 @@ import org.testng.annotations.Parameters;
 
 import com.selenium_project.Entities.User;
 import com.selenium_project.Pages.LogInPage.SignInPage;
+import com.selenium_project.Pages.MainPage.MainPage;
 import com.selenium_project.Pages.PostPage.PostPage;
 import com.selenium_project.Utilities.Configurations.WebDriverFactory;
 import com.selenium_project.Utilities.Configurations.WebsiteTestingConfigurations;
@@ -21,43 +22,42 @@ import com.selenium_project.Utilities.Excel.ExcelUtil;
 
 
 
-public class BasePostPage extends BaseTest{
-    protected static PostPage postpage;
+public class BaseMainPage extends BaseTest{
+    protected static MainPage mainpage;
     protected static SignInPage signInPage;
+    public List<User> users;
 
+  
     @BeforeMethod
     @Parameters("chrome")
     public void setUpPostPage(@Optional("chrome") String browser) throws IOException {
+        super.setUp(browser); // Ensure driver is set up in BaseTest
+
         // Load users and login data from Excel
         ExcelUtil.loadUsersFromExcel(WebsiteTestingConfigurations.ExcelFilePathSignUp);
         List<User> users = ExcelUtil.getUsers();
 
-        // Set up the WebDriver and log in
+        // Login setup
         User user = users.get(0);
-        super.setUp(browser); 
-        super.setUpp();
-
         signInPage = new SignInPage(driver);
         signInPage.inputUsername(user.getUsername());
         signInPage.inputPassword(user.getPassword());
         signInPage.clickSignInButton();
 
-        postpage = new PostPage(driver);
+        mainpage = new MainPage(driver);  // Initialize mainPage with non-null driver
     }
 
-    @DataProvider(name = "postDescriptions")
-    public Object[][] postDescriptionsProvider() throws IOException {
-        ExcelUtil.loadPostsFromExcel(WebsiteTestingConfigurations.ExcelFilePath);  
-        List<String> postDescriptions = ExcelUtil.getPosts(); 
+    @DataProvider(name = "searchQueries")
+    public Object[][] searchQueriesProvider() throws IOException {
+        ExcelUtil.loadUsersFromExcel(WebsiteTestingConfigurations.ExcelFilePathSignUp);
+        List<String> searchQueries = ExcelUtil.getSearchQueries();
 
-        Object[][] data = new Object[postDescriptions.size()][1];
-        for (int i = 0; i < postDescriptions.size(); i++) {
-            data[i][0] = postDescriptions.get(i);
+        Object[][] data = new Object[searchQueries.size()][1];
+        for (int i = 0; i < searchQueries.size(); i++) {
+            data[i][0] = searchQueries.get(i);
         }
         return data;
-    
-}
-
+    }
 
     // @AfterMethod
     // public void tearDownPostPage() {

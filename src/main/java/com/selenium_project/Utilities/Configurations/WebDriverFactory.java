@@ -26,8 +26,4 @@ public class WebDriverFactory {
             driver = null;
         }
     }
- SignInTests
 }
-=======
-}
- Post-Test

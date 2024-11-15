@@ -9,7 +9,11 @@
         <classes>
             <class name="com.selenium_project.SignUpPage.SignUpPageTest" />
         </classes>
-        
+    </test>
+    <test name="MainPageTests">
+        <classes>
+            <class name="com.selenium_project.MainPage.MainPageTest"/>
+        </classes>
     </test>
     <test name="Post Tests">
         <classes>
@@ -17,4 +21,3 @@
         </classes>
     </test>
 </suite>
-
