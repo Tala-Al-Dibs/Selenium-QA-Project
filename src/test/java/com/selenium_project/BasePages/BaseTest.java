@@ -30,10 +30,10 @@ public class BaseTest {
     }
 
  
-    // @AfterSuite
-    // public static void tearDown () {
-    //     WebDriverFactory.quitDriver();
-    // }
+    @AfterSuite
+    public static void tearDown () {
+        WebDriverFactory.quitDriver();
+    }
 
     
 }

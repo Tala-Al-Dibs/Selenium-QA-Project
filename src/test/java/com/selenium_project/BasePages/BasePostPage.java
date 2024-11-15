@@ -59,8 +59,8 @@ public class BasePostPage extends BaseTest{
 }
 
 
-    // @AfterMethod
-    // public void tearDownPostPage() {
-    //     WebDriverFactory.quitDriver();
-    // }
+    @AfterMethod
+    public void tearDownPostPage() {
+        WebDriverFactory.quitDriver();
+    }
 }
