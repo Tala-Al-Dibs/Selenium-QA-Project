@@ -172,6 +172,8 @@ public class User {
         this.homeSearch = homeSearch;
     }
 
+   
+
     public String getBookmarkSearch() {
         return bookmarkSearch;
     }

@@ -1,13 +1,17 @@
 package com.selenium_project.Pages.PostPage;
 
+import java.io.IOException;
 import java.time.Duration;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import com.selenium_project.Utilities.Locators.PostLocators;
+
+import com.selenium_project.Utilities.Configurations.WebsiteTestingConfigurations;
 import com.selenium_project.Utilities.Excel.ExcelUtil;
+import com.selenium_project.Utilities.Locators.PostLocators;
 
 public class PostPage {
     private WebDriver driver;
@@ -18,30 +22,70 @@ public class PostPage {
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
-    // Method to create post using description and privacy
-    public void createPost(String description, String privacy) {
-        WebElement descriptionInput = wait.until(ExpectedConditions.visibilityOfElementLocated(PostLocators.postInputDescription));
-        descriptionInput.sendKeys(description);
-        WebElement privacyInput = wait.until(ExpectedConditions.elementToBeClickable(PostLocators.postInputPrivacy));
-        privacyInput.sendKeys(privacy);
+    public void createPost(String description) {
+        WebElement postInput = wait.until(ExpectedConditions.visibilityOfElementLocated(PostLocators.postInputDescription));
+        postInput.clear();
+        postInput.sendKeys(description);
         WebElement postButton = wait.until(ExpectedConditions.elementToBeClickable(PostLocators.postButton));
         postButton.click();
     }
 
-    // Edit an existing post
-    public void editPost(String newDescription) {
-        WebElement editButton = wait.until(ExpectedConditions.elementToBeClickable(PostLocators.editButton));
-        editButton.click();
-        WebElement descriptionInput = wait.until(ExpectedConditions.visibilityOfElementLocated(PostLocators.postInputDescription));
-        descriptionInput.clear();
-        descriptionInput.sendKeys(newDescription);
+ 
+public void editPost(String updatedDescription) {
+    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+    
+    wait.until(ExpectedConditions.visibilityOfElementLocated(PostLocators.postContainer)).click();
+    wait.until(ExpectedConditions.elementToBeClickable(PostLocators.threeDotsIcon)).click();
+    wait.until(ExpectedConditions.elementToBeClickable(PostLocators.editButton)).click();
+    
+    WebElement descriptionInput = wait.until(ExpectedConditions.visibilityOfElementLocated(PostLocators.editpostInputDescription));
+    
+    descriptionInput.clear();
+    descriptionInput.sendKeys(updatedDescription);
+    
+    ((JavascriptExecutor) driver).executeScript("arguments[0].value='" + updatedDescription + "';", descriptionInput);
+
+    wait.until(ExpectedConditions.elementToBeClickable(PostLocators.submiteditButton)).click();
+    driver.navigate().refresh();
+
+    wait.until(ExpectedConditions.textToBePresentInElementLocated(PostLocators.postContainer, updatedDescription));
+}
+
+  
+    
+    public void deletePost() {
+        WebElement postContainer = wait.until(ExpectedConditions.visibilityOfElementLocated(PostLocators.postContainer));
+        WebElement threeDotsIcon = postContainer.findElement(PostLocators.threeDotsIcon);
+        threeDotsIcon.click();
+    
+        WebElement deleteOption = wait.until(ExpectedConditions.visibilityOfElementLocated(PostLocators.deleteOptionInDropdown));
+        deleteOption.click();
+    
+        wait.until(ExpectedConditions.invisibilityOf(postContainer)); 
+    }
+    
+    public String getPostDescription() {
+        WebElement descriptionElement = driver.findElement(PostLocators.postInputDescription);
+        return descriptionElement.getText();
+    }
+    public boolean isPostDisplayedByDescription(String description) {
+        return driver.findElements(PostLocators.postInputDescription).size() > 0;
     }
 
-    // React to a post with a specific reaction type
+    public String getCurrentPostDescription() {
+        return driver.findElement(By.cssSelector(".post-content h2")).getText();
+    }
+    
+    public boolean isPostDeleted(String description) {
+        return driver.findElements(By.xpath("//div[contains(text(), '" + description + "')]")).size() == 0;
+    }
+
     public void reactToPost(String reactionType) {
-        WebElement reactButton = wait.until(ExpectedConditions.elementToBeClickable(PostLocators.reactButton));
+        WebElement postContainer = wait.until(ExpectedConditions.visibilityOfElementLocated(PostLocators.postContainer));
+        WebElement reactButton = postContainer.findElement(PostLocators.reactButton);
         reactButton.click();
 
+        // Click the corresponding reaction based on the passed argument
         switch (reactionType.toUpperCase()) {
             case "LIKE":
                 wait.until(ExpectedConditions.elementToBeClickable(PostLocators.likeReaction)).click();
@@ -62,40 +106,7 @@ public class PostPage {
                 wait.until(ExpectedConditions.elementToBeClickable(PostLocators.angryReaction)).click();
                 break;
             default:
-                throw new IllegalArgumentException("Invalid reaction type: " + reactionType);
-        }
-    }
-
-    // Delete a post
-    public void deletePost() {
-        WebElement deleteButton = wait.until(ExpectedConditions.elementToBeClickable(PostLocators.deleteButton));
-        deleteButton.click();
-    }
-
-    // public void createPostsFromExcel(String excelFilePath, String privacy) {
-    //     try {
-    //         ExcelUtil.loadUsersFromExcel(excelFilePath);
-
-    //         for (String postDescription : ExcelUtil.getPosts()) {
-    //             createPost(postDescription, privacy);
-    //             System.out.println("Created post with description: " + postDescription);
-    //         }
-
-    //     } catch (Exception e) {
-    //         e.printStackTrace();
-    //         System.out.println("Error reading posts from Excel: " + e.getMessage());
-    //     }
-    // }
-
-    public WebElement findPostByDescription(String description) {
-        try {
-            WebElement post = wait.until(ExpectedConditions.visibilityOfElementLocated(
-                By.xpath("//div[contains(text(), '" + description + "')]")
-            ));
-            return post;
-        } catch (Exception e) {
-            System.out.println("Post with description '" + description + "' not found.");
-            return null;
+                System.out.println("Invalid reaction type.");
         }
     }
 }
