@@ -1,10 +1,13 @@
 package com.selenium_project.Pages.ProfilePage;
 
 import java.time.Duration;
+
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
 import com.selenium_project.Utilities.Locators.ProfilePageLocators;
 
 public class ProfilePage {
@@ -19,7 +22,8 @@ public class ProfilePage {
 
     public void clickEditButton() {
         WebElement editButton = wait.until(ExpectedConditions.elementToBeClickable(ProfilePageLocators.editButton));
-        editButton.click();
+        ((JavascriptExecutor) driver).executeScript("window.scrollBy(0,600);");
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", editButton);
     }
 
     public void inputUsername(String username) {
@@ -63,6 +67,12 @@ public class ProfilePage {
         bioInput.clear();
         bioInput.sendKeys(bio);
     }
+
+    public String inputBioText() {
+        WebElement bioInput = wait.until(ExpectedConditions.visibilityOfElementLocated(ProfilePageLocators.bioInput));
+        return bioInput.getAttribute("value");    
+    }
+
 
     public void clickSaveButton() {
         WebElement saveButton = wait.until(ExpectedConditions.elementToBeClickable(ProfilePageLocators.saveButton));
@@ -121,7 +131,8 @@ public class ProfilePage {
 
     public void clickHidePhoneNumberButton() {
         WebElement hidePhoneNumberButton = wait.until(ExpectedConditions.elementToBeClickable(ProfilePageLocators.hidePhoneNumberButton));
-        hidePhoneNumberButton.click();
+        ((JavascriptExecutor) driver).executeScript("window.scrollBy(0,700);");
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", hidePhoneNumberButton);
     }
 
     public void clickHideGenderButton() {
@@ -137,5 +148,19 @@ public class ProfilePage {
     public void clickRemoveFriendButton() {
         WebElement removeFriendButton = wait.until(ExpectedConditions.elementToBeClickable(ProfilePageLocators.removeFriendButton));
         removeFriendButton.click();
+    }
+
+    public void clickProfilePictureImg() {
+        WebElement profilePictureImg = wait.until(ExpectedConditions.elementToBeClickable(ProfilePageLocators.profilePictureImg));
+        profilePictureImg.click();
+    }
+
+     public boolean isPhoneNumberVisible() {
+        try {
+            WebElement phoneNumberElement = wait.until(ExpectedConditions.visibilityOfElementLocated(ProfilePageLocators.phoneNumberSelector));
+            return phoneNumberElement.isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
     }
 }

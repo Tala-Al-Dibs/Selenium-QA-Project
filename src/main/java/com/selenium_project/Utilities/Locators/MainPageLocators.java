@@ -10,6 +10,8 @@ public class MainPageLocators {
 
     public static final By searchInput = By.className("search-input");
     public static final By searchResultItems = By.cssSelector(".search-result-item");
+
     public static final By searchResultUsernames = By.cssSelector(".search-result-item .search-first-last-name p:nth-child(2)");
     public static final By firstSearchResult = By.cssSelector(".search-first-last-name > p:nth-child(1)");
 }
+
