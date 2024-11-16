@@ -3,8 +3,8 @@ package com.selenium_project.Utilities.Locators;
 import org.openqa.selenium.By;
 
 public class ProfilePageLocators {
-   
-    public static By editButton = By.cssSelector("button:contains('Edit')");
+    
+    public static By editButton = By.cssSelector(".profile-info > button");
     public static By usernameInput = By.cssSelector("input[type=\"text\"][name=\"username\"]");
     public static By firstNameInput = By.cssSelector("input[type=\"text\"][name=\"first_name\"]");
     public static By lastNameInput = By.cssSelector("input[type=\"text\"][name=\"last_name\"]");
@@ -27,6 +27,9 @@ public class ProfilePageLocators {
     public static By hideGenderButton = By.cssSelector("div.form-group input[name=\"gender\"] + label + button.toggle-button");
     public static By addFriendButton = By.cssSelector("button.add-friend-button");
     public static By removeFriendButton = By.cssSelector("button.remove-friend-button");
-
+    public static By profilePictureImg = By.cssSelector("div[style*='background-color: white; border-radius: 50%;'] img[src='/images/profile_pic.jpg']");
+    public static By profileEditContainer = By.cssSelector("div.profile-edit-container");
+    public static By bioField = By.cssSelector("div.profile-fields input[name='bio']");
+    public static By phoneNumberSelector = By.cssSelector(".about-section p strong:contains('Phone Number:')");
  }
 

@@ -1,6 +1,7 @@
 package com.selenium_project.Pages.CommentPage;
 
 import java.time.Duration;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -23,6 +24,16 @@ public class CommentPage {
         chatIcon.click();
     }
 
+    public String getLikeCount() {
+        WebElement likeCountElement = wait.until(ExpectedConditions.visibilityOfElementLocated(CommentLocators.likeCount));
+        return likeCountElement.getText();
+    }
+
+    public String getLikeButtonImageSrc() {
+        WebElement likeButtonImage = wait.until(ExpectedConditions.visibilityOfElementLocated(CommentLocators.likeButton));
+        return likeButtonImage.getAttribute("src");
+    }
+    
     public void inputComment(String comment) {
         WebElement commentInput = wait.until(ExpectedConditions.visibilityOfElementLocated(CommentLocators.commentInput));
         commentInput.sendKeys(comment);
@@ -78,6 +89,16 @@ public class CommentPage {
         WebElement submitReplyButton = wait.until(ExpectedConditions.elementToBeClickable(CommentLocators.submitReplyButton));
         submitReplyButton.click();
     }
+
+    public String inputCommentText() {
+        WebElement inputComment = wait.until(ExpectedConditions.visibilityOfElementLocated(CommentLocators.commentInput));
+        return inputComment.getAttribute("value");    
+    }
+
+    public String lastCommentText() {
+        WebElement lastCommentContent = wait.until(ExpectedConditions.visibilityOfElementLocated(CommentLocators.lastCommentContent));
+        return lastCommentContent.getAttribute("value");    
+    }   
 }
 
 
