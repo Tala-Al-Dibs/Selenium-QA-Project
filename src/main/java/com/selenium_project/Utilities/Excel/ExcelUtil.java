@@ -16,6 +16,7 @@ public class ExcelUtil {
 
      private static List<User> users = new ArrayList<>();
      private static List<String> posts = new ArrayList<>();
+     private static List<String> searchQueries = new ArrayList<>();
 
     public static void loadUsersFromExcel(String filePath) throws IOException {
         FileInputStream file = new FileInputStream(filePath);
@@ -43,21 +44,25 @@ public class ExcelUtil {
                 getCellValue(row.getCell(13)), // editedBio
                 getCellValue(row.getCell(14)), // message
                 getCellValue(row.getCell(15)), // homeSearch
-                getCellValue(row.getCell(16))  // bookmarkSearch
+                getCellValue(row.getCell(16)) // bookmarkSearch
             );
             users.add(user);
+
         }
 
         workbook.close();
         file.close();
     }
-
+    public static List<String> getSearchQueries() {
+        return searchQueries;
+    }
     public static List<User> getUsers() {
         return users;
     }
     public static List<String> getPosts() {
         return posts;
     }
+  
     public static User findUserByUsername(String username) {
         for (User user : users) {
             if (user.getUsername().equals(username)) {
@@ -86,6 +91,43 @@ public class ExcelUtil {
             default:
                 return "";
         }
+    }
+    public static void loadPostsFromExcel(String filePath) throws IOException {
+        FileInputStream file = new FileInputStream(filePath);
+        Workbook workbook = new XSSFWorkbook(file);
+        Sheet sheet = workbook.getSheetAt(0);
+
+        posts.clear(); 
+
+        for (int i = 1; i < sheet.getPhysicalNumberOfRows(); i++) {
+            Row row = sheet.getRow(i);
+            String postDescription = getCellValue(row.getCell(10)); 
+            if (!postDescription.isEmpty()) {
+                posts.add(postDescription);  
+            }
+        }
+
+        workbook.close();
+        file.close();
+    }
+      // Load search queries for usernames from Excel file
+      public static void loadSearchQueriesFromExcel(String filePath) throws IOException {
+        FileInputStream file = new FileInputStream(filePath);
+        Workbook workbook = new XSSFWorkbook(file);
+        Sheet sheet = workbook.getSheetAt(0);
+
+        searchQueries.clear();
+
+        for (int i = 1; i < sheet.getPhysicalNumberOfRows(); i++) {
+            Row row = sheet.getRow(i);
+            String searchQuery = getCellValue(row.getCell(15));  // Column for 'homeSearch'
+            if (searchQuery != null && !searchQuery.isEmpty()) {
+                searchQueries.add(searchQuery);
+            }
+        }
+
+        workbook.close();
+        file.close();
     }
     
 }

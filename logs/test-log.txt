@@ -1,0 +1,1 @@
+2024-11-09 20:11:53 - Detected a static method [com.selenium_project.BasePages.BaseTest.setUpp()]. Static configuration methods can cause unexpected behavior.

@@ -1,14 +1,16 @@
 package com.selenium_project.Pages.PostPage;
 
+import java.io.IOException;
 import java.time.Duration;
-import java.util.HashMap;
-import java.util.Map;
-
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import com.selenium_project.Utilities.Configurations.WebsiteTestingConfigurations;
+import com.selenium_project.Utilities.Excel.ExcelUtil;
 import com.selenium_project.Utilities.Locators.PostLocators;
 
 public class PostPage {
@@ -19,93 +21,92 @@ public class PostPage {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
-    public void createPost(String description, String privacy) {
-        WebElement descriptionInput = wait.until(ExpectedConditions.visibilityOfElementLocated(PostLocators.postInputDescription));
-        descriptionInput.sendKeys(description);
-    
-        WebElement privacyDropdown = wait.until(ExpectedConditions.elementToBeClickable(PostLocators.postInputPrivacyDropdown));
-        privacyDropdown.click();
-    
-        if (privacy.equalsIgnoreCase("Public")) {
-            WebElement publicOption = wait.until(ExpectedConditions.elementToBeClickable(PostLocators.publicOption));
-            publicOption.click();
-        } else {
-            WebElement privateOption = wait.until(ExpectedConditions.elementToBeClickable(PostLocators.privateOption)); // Adjust the locator for "Private"
-            privateOption.click();
-        }
-    
+
+    public void createPost(String description) {
+        WebElement postInput = wait.until(ExpectedConditions.visibilityOfElementLocated(PostLocators.postInputDescription));
+        postInput.clear();
+        postInput.sendKeys(description);
         WebElement postButton = wait.until(ExpectedConditions.elementToBeClickable(PostLocators.postButton));
         postButton.click();
     }
-    
 
-    public void editPost(String newDescription) {
-        WebElement threeDots = wait.until(ExpectedConditions.elementToBeClickable(PostLocators.threeDotsIcon));
-        threeDots.click();
+ 
+public void editPost(String updatedDescription) {
+    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
     
-        WebElement editOption = wait.until(ExpectedConditions.elementToBeClickable(PostLocators.editOptionInDropdown));
-        editOption.click();
+    wait.until(ExpectedConditions.visibilityOfElementLocated(PostLocators.postContainer)).click();
+    wait.until(ExpectedConditions.elementToBeClickable(PostLocators.threeDotsIcon)).click();
+    wait.until(ExpectedConditions.elementToBeClickable(PostLocators.editButton)).click();
     
-        WebElement descriptionInput = wait.until(ExpectedConditions.visibilityOfElementLocated(PostLocators.postInputDescription));
-        descriptionInput.clear(); 
-        descriptionInput.sendKeys(newDescription);  
-    }
+    WebElement descriptionInput = wait.until(ExpectedConditions.visibilityOfElementLocated(PostLocators.editpostInputDescription));
     
+    descriptionInput.clear();
+    descriptionInput.sendKeys(updatedDescription);
     
+    ((JavascriptExecutor) driver).executeScript("arguments[0].value='" + updatedDescription + "';", descriptionInput);
 
-   // React to a post with a specific reaction type
-public void reactToPost(String reactionType) {
-    WebElement reactButton = wait.until(ExpectedConditions.elementToBeClickable(PostLocators.reactButton));
-    reactButton.click();
+    wait.until(ExpectedConditions.elementToBeClickable(PostLocators.submiteditButton)).click();
+    driver.navigate().refresh();
 
-    Map<String, By> reactionMap = new HashMap<>();
-    reactionMap.put("LIKE", PostLocators.likeReaction);
-    reactionMap.put("LOVE", PostLocators.loveReaction);
-    reactionMap.put("HAHA", PostLocators.hahaReaction);
-    reactionMap.put("WOW", PostLocators.wowReaction);
-    reactionMap.put("SAD", PostLocators.sadReaction);
-    reactionMap.put("ANGRY", PostLocators.angryReaction);
-
-    By reactionLocator = reactionMap.get(reactionType.toUpperCase());
-
-    if (reactionLocator != null) {
-        wait.until(ExpectedConditions.elementToBeClickable(reactionLocator)).click();
-    } else {
-        throw new IllegalArgumentException("Invalid reaction type: " + reactionType);
-    }
+    wait.until(ExpectedConditions.textToBePresentInElementLocated(PostLocators.postContainer, updatedDescription));
 }
 
-    // Delete a post
+  
+    
     public void deletePost() {
-        WebElement deleteButton = wait.until(ExpectedConditions.elementToBeClickable(PostLocators.deleteButton));
-        deleteButton.click();
+        WebElement postContainer = wait.until(ExpectedConditions.visibilityOfElementLocated(PostLocators.postContainer));
+        WebElement threeDotsIcon = postContainer.findElement(PostLocators.threeDotsIcon);
+        threeDotsIcon.click();
+    
+        WebElement deleteOption = wait.until(ExpectedConditions.visibilityOfElementLocated(PostLocators.deleteOptionInDropdown));
+        deleteOption.click();
+    
+        wait.until(ExpectedConditions.invisibilityOf(postContainer)); 
     }
     
+    public String getPostDescription() {
+        WebElement descriptionElement = driver.findElement(PostLocators.postInputDescription);
+        return descriptionElement.getText();
+    }
+    public boolean isPostDisplayedByDescription(String description) {
+        return driver.findElements(PostLocators.postInputDescription).size() > 0;
+    }
 
-    // public void createPostsFromExcel(String excelFilePath, String privacy) {
-    //     try {
-    //         ExcelUtil.loadUsersFromExcel(excelFilePath);
+    public String getCurrentPostDescription() {
+        return driver.findElement(By.cssSelector(".post-content h2")).getText();
+    }
+    
+    public boolean isPostDeleted(String description) {
+        return driver.findElements(By.xpath("//div[contains(text(), '" + description + "')]")).size() == 0;
+    }
 
-    //         for (String postDescription : ExcelUtil.getPosts()) {
-    //             createPost(postDescription, privacy);
-    //             System.out.println("Created post with description: " + postDescription);
-    //         }
+    public void reactToPost(String reactionType) {
+        WebElement postContainer = wait.until(ExpectedConditions.visibilityOfElementLocated(PostLocators.postContainer));
+        WebElement reactButton = postContainer.findElement(PostLocators.reactButton);
+        reactButton.click();
 
-    //     } catch (Exception e) {
-    //         e.printStackTrace();
-    //         System.out.println("Error reading posts from Excel: " + e.getMessage());
-    //     }
-    // }
-
-    public WebElement findPostByDescription(String description) {
-        try {
-            WebElement post = wait.until(ExpectedConditions.visibilityOfElementLocated(
-                By.xpath("//div[contains(text(), '" + description + "')]")
-            ));
-            return post;
-        } catch (Exception e) {
-            System.out.println("Post with description '" + description + "' not found.");
-            return null;
+        // Click the corresponding reaction based on the passed argument
+        switch (reactionType.toUpperCase()) {
+            case "LIKE":
+                wait.until(ExpectedConditions.elementToBeClickable(PostLocators.likeReaction)).click();
+                break;
+            case "LOVE":
+                wait.until(ExpectedConditions.elementToBeClickable(PostLocators.loveReaction)).click();
+                break;
+            case "HAHA":
+                wait.until(ExpectedConditions.elementToBeClickable(PostLocators.hahaReaction)).click();
+                break;
+            case "WOW":
+                wait.until(ExpectedConditions.elementToBeClickable(PostLocators.wowReaction)).click();
+                break;
+            case "SAD":
+                wait.until(ExpectedConditions.elementToBeClickable(PostLocators.sadReaction)).click();
+                break;
+            case "ANGRY":
+                wait.until(ExpectedConditions.elementToBeClickable(PostLocators.angryReaction)).click();
+                break;
+            default:
+                System.out.println("Invalid reaction type.");
         }
     }
 }
