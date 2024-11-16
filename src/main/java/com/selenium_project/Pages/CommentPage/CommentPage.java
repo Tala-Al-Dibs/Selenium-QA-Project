@@ -36,6 +36,7 @@ public class CommentPage {
     
     public void inputComment(String comment) {
         WebElement commentInput = wait.until(ExpectedConditions.visibilityOfElementLocated(CommentLocators.commentInput));
+        commentInput.clear();
         commentInput.sendKeys(comment);
     }
 
@@ -97,8 +98,9 @@ public class CommentPage {
 
     public String lastCommentText() {
         WebElement lastCommentContent = wait.until(ExpectedConditions.visibilityOfElementLocated(CommentLocators.lastCommentContent));
-        return lastCommentContent.getAttribute("value");    
+        return lastCommentContent.getText();    
     }   
+
 }
 
 

@@ -20,6 +20,6 @@ public class CommentLocators {
     public static By dropdownContent = By.cssSelector("div.dropdown-content");  
     public static By editButton = By.cssSelector("div.dropdown-content button:contains('Edit')"); 
     public static By deleteButton = By.cssSelector("div.dropdown-content button:contains('Delete')"); 
-    public static By lastCommentContent = By.cssSelector(".commentInputSection .commentMain:last-child .contentComment"); 
+    public static By lastCommentContent = By.cssSelector("div:last-child > div > div.commentContent > p"); 
         
 }

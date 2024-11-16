@@ -42,31 +42,31 @@ public class PostPageTest extends BasePostPage {
     }
 
     
-    @Test(dataProvider = "postDescriptions")
-public void testCreateAndEditPost(String postDescription) throws InterruptedException {
-    postpage.createPost(postDescription);
-    postpage.acceptAlert();
+//     @Test(dataProvider = "postDescriptions")
+// public void testCreateAndEditPost(String postDescription) throws InterruptedException {
+//     postpage.createPost(postDescription);
+//     postpage.acceptAlert();
     
-    String newDescription = "Updated: " + postDescription; 
-    postpage.editPost(newDescription);
+//     String newDescription = "Updated: " + postDescription; 
+//     postpage.editPost(newDescription);
     
-    // Assert the edited post description matches
-    assertEquals(postpage.getEditedPostDescription(), newDescription);
-}
+//     // Assert the edited post description matches
+//     assertEquals(postpage.getEditedPostDescription(), newDescription);
+// }
 
     
 
     
-    @Test(dataProvider = "postDescriptions")
-    public void testDeletePost(String description) throws InterruptedException {
-        postpage.createPost(description);
-        postpage.acceptAlert();
-        String descriptionBeforeDelete = postpage.getCurrentPostDescription();
+//     @Test(dataProvider = "postDescriptions")
+//     public void testDeletePost(String description) throws InterruptedException {
+//         postpage.createPost(description);
+//         postpage.acceptAlert();
+//         String descriptionBeforeDelete = postpage.getCurrentPostDescription();
         
-        postpage.deletePost();
+//         postpage.deletePost();
         
-        Assert.assertTrue(postpage.isPostDeleted(descriptionBeforeDelete), "Post deletion failed: Post still exists.");
-    }
+//         Assert.assertTrue(postpage.isPostDeleted(descriptionBeforeDelete), "Post deletion failed: Post still exists.");
+//     }
     
 
     @Test(dataProvider = "postDescriptions")

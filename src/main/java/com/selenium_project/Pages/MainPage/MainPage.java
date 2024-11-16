@@ -55,7 +55,7 @@ public class MainPage {
         //         .until(ExpectedConditions.visibilityOfElementLocated(MainPageLocators.firstSearchResult));
         List<WebElement> searchResults = getResultItems(username);
         for (int i = 0; i < searchResults.size(); i++) {
-            if (searchResults.get(i).getText().trim().contains("John Doe")) {
+            if (searchResults.get(i).getText().trim().contains("Jane Doe")) {
                 return true;
             }
         }
@@ -82,6 +82,7 @@ public class MainPage {
         }
         return true;
     }
+
 
 }
 

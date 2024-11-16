@@ -1,7 +1,6 @@
 package com.selenium_project.ProfilePage;
 
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
+import static org.testng.Assert.*;
 
 import java.io.IOException;
 import java.util.List;
@@ -41,7 +40,8 @@ public class ProfilePageTest extends BaseProfilePage {
         
         profilePage.clickSaveButton();
         
-        assertTrue(profilePage.isPhoneNumberVisible());
+        assertFalse(profilePage.isPhoneNumberVisible());
+
     }
 
 }

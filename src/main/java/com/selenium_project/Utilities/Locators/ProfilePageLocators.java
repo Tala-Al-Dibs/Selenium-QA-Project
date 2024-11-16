@@ -12,7 +12,7 @@ public class ProfilePageLocators {
     public static By phoneNumberInput = By.cssSelector("input[type=\"text\"][name=\"phone_number\"]");
     public static By genderInput = By.cssSelector("input[type=\"text\"][name=\"gender\"]");
     public static By bioInput = By.cssSelector("input[type=\"text\"][name=\"bio\"]");
-    public static By saveButton = By.cssSelector("button.save-button");
+    public static By saveButton = By.className("save-button");
     public static By cancelButton = By.cssSelector("button.cancel-button");
     public static By uploadProfilePictureButton = By.cssSelector("button:contains('Upload Profile Picture')");
     public static By fileInput = By.cssSelector("input[type=\"file\"]");
@@ -23,7 +23,7 @@ public class ProfilePageLocators {
     public static By hideLastNameButton = By.cssSelector("div.form-group input[name=\"last_name\"] + label + button.toggle-button");
     public static By hideFirstNameButton = By.cssSelector("div.form-group input[name=\"first_name\"] + label + button.toggle-button");
     public static By hideEmailButton = By.cssSelector("div.form-group input[name=\"email\"] + label + button.toggle-button");
-    public static By hidePhoneNumberButton = By.cssSelector("div.form-group input[name=\"phone_number\"] + label + button.toggle-button");
+    public static By hidePhoneNumberButton = By.cssSelector(".profile-fields > div:nth-child(5) > button");
     public static By hideGenderButton = By.cssSelector("div.form-group input[name=\"gender\"] + label + button.toggle-button");
     public static By addFriendButton = By.cssSelector("button.add-friend-button");
     public static By removeFriendButton = By.cssSelector("button.remove-friend-button");

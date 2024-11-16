@@ -38,7 +38,7 @@ public class CommentTest extends BaseCommentPage{
         commentPage.inputComment(comment);
         commentPage.clickSendButton();
         String actualCommentText = commentPage.lastCommentText();  
-        assertEquals(actualCommentText, comment, "The last comment does not match the expected comment.");
+        assertEquals(actualCommentText, comment);
 
     }    
 
