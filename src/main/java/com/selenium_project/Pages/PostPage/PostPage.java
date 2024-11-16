@@ -2,8 +2,11 @@ package com.selenium_project.Pages.PostPage;
 
 import java.io.IOException;
 import java.time.Duration;
+
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -31,25 +34,37 @@ public class PostPage {
     }
 
  
-public void editPost(String updatedDescription) {
-    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+    public void editPost(String updatedDescription) {
+        // Scroll to and click on the post container
+        WebElement postContainer = wait.until(ExpectedConditions.visibilityOfElementLocated(PostLocators.postContainer));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", postContainer);
+        postContainer.click();
+        
+        // Click on the three dots and select edit, ensuring the elements are clickable
+        WebElement threeDotsIcon = wait.until(ExpectedConditions.elementToBeClickable(PostLocators.threeDotsIcon));
+        threeDotsIcon.click();
+        
+        WebElement editButton = wait.until(ExpectedConditions.elementToBeClickable(PostLocators.editButton));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", editButton); // Ensure it's in the viewport
+        editButton.click();
+        
+        // Edit the description
+        WebElement descriptionInput = wait.until(ExpectedConditions.visibilityOfElementLocated(PostLocators.editpostInputDescription));
+        descriptionInput.clear();
+        descriptionInput.sendKeys(updatedDescription);
+        
+        // Ensure the text is entered correctly
+        ((JavascriptExecutor) driver).executeScript("arguments[0].value='" + updatedDescription + "';", descriptionInput);
+        
+        // Submit the edited post, ensuring it's clickable
+        WebElement submitEditButton = wait.until(ExpectedConditions.elementToBeClickable(PostLocators.submiteditButton));
+        submitEditButton.click();
+        
+        // Wait for the updated description to appear in the post container
+        wait.until(ExpectedConditions.textToBePresentInElementLocated(PostLocators.postDescription, updatedDescription));
+    }
     
-    wait.until(ExpectedConditions.visibilityOfElementLocated(PostLocators.postContainer)).click();
-    wait.until(ExpectedConditions.elementToBeClickable(PostLocators.threeDotsIcon)).click();
-    wait.until(ExpectedConditions.elementToBeClickable(PostLocators.editButton)).click();
     
-    WebElement descriptionInput = wait.until(ExpectedConditions.visibilityOfElementLocated(PostLocators.editpostInputDescription));
-    
-    descriptionInput.clear();
-    descriptionInput.sendKeys(updatedDescription);
-    
-    ((JavascriptExecutor) driver).executeScript("arguments[0].value='" + updatedDescription + "';", descriptionInput);
-
-    wait.until(ExpectedConditions.elementToBeClickable(PostLocators.submiteditButton)).click();
-    driver.navigate().refresh();
-
-    wait.until(ExpectedConditions.textToBePresentInElementLocated(PostLocators.postContainer, updatedDescription));
-}
 
   
     
@@ -109,4 +124,25 @@ public void editPost(String updatedDescription) {
                 System.out.println("Invalid reaction type.");
         }
     }
+
+
+    public void acceptAlert () {
+         try {
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+            wait.until(ExpectedConditions.alertIsPresent());
+            
+            Alert alert = driver.switchTo().alert();
+            alert.accept();
+
+        } catch (NoAlertPresentException e) {
+            System.out.println("No alert present: " + e.getMessage());
+        }
+    }
+
+    public String getEditedPostDescription () {
+        WebElement editedPostContainer = wait.until(ExpectedConditions.visibilityOfElementLocated(PostLocators.postContainer));
+        WebElement editedPostDescription = editedPostContainer.findElement(PostLocators.postDescription);
+        return editedPostDescription.getText();
+    }
 }
+

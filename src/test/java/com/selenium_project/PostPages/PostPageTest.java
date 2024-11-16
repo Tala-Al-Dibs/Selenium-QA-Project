@@ -1,5 +1,7 @@
 package com.selenium_project.PostPages;
 
+import static org.testng.Assert.*;
+
 import java.io.IOException;
 import java.time.Duration;
 import java.util.List;
@@ -35,68 +37,30 @@ public class PostPageTest extends BasePostPage {
     @Test(dataProvider = "postDescriptions")
     public void testCreatePost(String description) throws IOException, InterruptedException {
         postpage.createPost(description);
-
-        try {
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-            wait.until(ExpectedConditions.alertIsPresent());
-            
-            Alert alert = driver.switchTo().alert();
-            alert.accept();
-
-            Thread.sleep(1000);
-
-        } catch (NoAlertPresentException e) {
-            System.out.println("No alert present: " + e.getMessage());
-        }
-        
-        Assert.assertTrue(postpage.isPostDisplayedByDescription(description), "Post creation failed: Post not found.");
+        postpage.acceptAlert();
+        assertTrue(postpage.isPostDisplayedByDescription(description), "Post creation failed: Post not found.");
     }
 
     
     @Test(dataProvider = "postDescriptions")
-    public void testCreateAndEditPost(String postDescription) throws InterruptedException {
-        postpage.createPost(postDescription);
-        
-        try {
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-            wait.until(ExpectedConditions.alertIsPresent());
-            
-            Alert alert = driver.switchTo().alert();
-            alert.accept();
-            Thread.sleep(1000);
-        } catch (NoAlertPresentException e) {
-            System.out.println("No alert present: " + e.getMessage());
-        }
+public void testCreateAndEditPost(String postDescription) throws InterruptedException {
+    postpage.createPost(postDescription);
+    postpage.acceptAlert();
     
-        WebElement postContainer = driver.findElement(PostLocators.postContainer);
-        assert postContainer.isDisplayed(); 
+    String newDescription = "Updated: " + postDescription; 
+    postpage.editPost(newDescription);
     
-        String newDescription = "Updated: " + postDescription; 
-        postpage.editPost(newDescription);
-    
-        
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        WebElement editedPostContainer = wait.until(ExpectedConditions.visibilityOfElementLocated(PostLocators.postContainer));
-        WebElement editedPostDescription = editedPostContainer.findElement(PostLocators.postDescription);
-    
-        assert editedPostDescription.getText().equals(newDescription);
-    }
+    // Assert the edited post description matches
+    assertEquals(postpage.getEditedPostDescription(), newDescription);
+}
+
     
 
     
     @Test(dataProvider = "postDescriptions")
     public void testDeletePost(String description) throws InterruptedException {
         postpage.createPost(description);
-        try {
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-            wait.until(ExpectedConditions.alertIsPresent());
-            
-            Alert alert = driver.switchTo().alert();
-            alert.accept();
-            Thread.sleep(1000);
-        } catch (NoAlertPresentException e) {
-            System.out.println("No alert present: " + e.getMessage());
-        }
+        postpage.acceptAlert();
         String descriptionBeforeDelete = postpage.getCurrentPostDescription();
         
         postpage.deletePost();
@@ -108,17 +72,7 @@ public class PostPageTest extends BasePostPage {
     @Test(dataProvider = "postDescriptions")
     public void testReactToPost(String description) throws InterruptedException {
         postpage.createPost(description);
-        
-        try {
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-            wait.until(ExpectedConditions.alertIsPresent());
-            
-            Alert alert = driver.switchTo().alert();
-            alert.accept();
-            Thread.sleep(1000);
-        } catch (NoAlertPresentException e) {
-            System.out.println("No alert present: " + e.getMessage());
-        }
+        postpage.acceptAlert();
         
         postpage.reactToPost("LOVE");
         
