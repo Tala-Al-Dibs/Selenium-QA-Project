@@ -53,8 +53,16 @@
 <dependency>
   <groupId>org.seleniumhq.selenium</groupId>
   <artifactId>selenium-java</artifactId>
-  <version>4.25.0</version>
+  <version>4.26.0</version>
 </dependency>
+
+<!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
+<dependency>
+  <groupId>io.github.bonigarcia</groupId>
+  <artifactId>webdrivermanager</artifactId>
+  <version>5.9.2</version>
+</dependency>
+
 
 <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-testng -->
 <!-- <dependency>
@@ -105,7 +113,14 @@
         </plugin>
         <plugin>
           <artifactId>maven-surefire-plugin</artifactId>
-          <version>2.22.1</version>
+          <version>3.5.2</version> <!-- Ensure the version supports parallelism -->
+          <configuration>
+              <suiteXmlFiles>
+                  <suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile>
+              </suiteXmlFiles>
+              <parallel>methods</parallel> <!-- Enable parallel execution -->
+              <threadCount>2</threadCount> <!-- Adjust based on system capability -->
+          </configuration>
         </plugin>
         <plugin>
           <artifactId>maven-jar-plugin</artifactId>
