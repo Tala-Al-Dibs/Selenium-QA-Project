@@ -49,4 +49,9 @@ public class SignInPage {
         WebElement helloUser = wait.until(ExpectedConditions.visibilityOfElementLocated(SignInPageLocators.helloUsername));
         return helloUser.isDisplayed();
     }
+
+    public boolean getBadC () {
+        WebElement badC = wait.until(ExpectedConditions.visibilityOfElementLocated(SignInPageLocators.badC));
+        return badC.isDisplayed();
+    }
 }

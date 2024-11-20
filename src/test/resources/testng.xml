@@ -1,13 +1,11 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="Test Suite" parallel="methods" thread-count="2">
+<suite name="Test Suite" parallel="methods" thread-count="3">
     <test name="SignIn Tests">
         <classes>
-            <class name="com.selenium_project.signInPage.signInTest" />
-        </classes>
-    </test>
-    <test name="SignUp Tests">
-        <classes>
-            <class name="com.selenium_project.SignUpPage.SignUpPageTest" />
+            <class name="com.selenium_project.signInPage.ParallelSignIn" />
+            <class name="com.selenium_project.MessagePage.ParallelMessageTest" />
+            <class name="com.selenium_project.SignUpPage.ParallelSignUpTest" />
+            <class name="com.selenium_project.CrossBrowserTest" />
         </classes>
     </test>
     <!-- <test name="MainPageTests">

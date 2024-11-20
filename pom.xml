@@ -118,8 +118,8 @@
               <suiteXmlFiles>
                   <suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile>
               </suiteXmlFiles>
-              <parallel>methods</parallel> <!-- Enable parallel execution -->
-              <threadCount>2</threadCount> <!-- Adjust based on system capability -->
+              <parallel>methods</parallel>
+              <threadCount>3</threadCount> 
           </configuration>
         </plugin>
         <plugin>
