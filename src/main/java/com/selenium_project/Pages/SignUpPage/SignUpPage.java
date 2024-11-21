@@ -89,6 +89,12 @@ public class SignUpPage {
         scrollToElement(signUpButton);
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", signUpButton);
     }
+
+    public Boolean allFieldsMessage () {
+        WebElement allFieldsMessage = wait.until(ExpectedConditions.visibilityOfElementLocated(SignUpPageLocators.signUpMeassage));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", allFieldsMessage);
+        return allFieldsMessage.isDisplayed();
+    }
     
 
     public void scrollToElement(WebElement element) {

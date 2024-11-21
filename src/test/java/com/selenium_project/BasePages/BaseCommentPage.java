@@ -30,14 +30,13 @@ public class BaseCommentPage extends BaseTest {
 
         User user =  users.get(0);
         super.setUp(browser); 
-        super.setUpp();
         
-        signInPage = new SignInPage(driver);
+        signInPage = new SignInPage(getDriver());
         signInPage.inputUsername(user.getUsername());
         signInPage.inputPassword(user.getPassword());
         signInPage.clickSignInButton();
 
-        commentPage = new CommentPage(driver);
+        commentPage = new CommentPage(getDriver());
 
         commentPage.clickCommentsIcon();
     }

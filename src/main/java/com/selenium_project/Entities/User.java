@@ -43,6 +43,12 @@ public class User {
         this.bookmarkSearch = bookmarkSearch;
     }
 
+    public User(String username, String password) {
+this.username = username;
+this.password = password;
+
+}
+
     // Getters and Setters for each field
     public String getUsername() {
         return username;

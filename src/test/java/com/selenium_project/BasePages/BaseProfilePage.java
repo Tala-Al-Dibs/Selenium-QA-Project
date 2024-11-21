@@ -30,14 +30,13 @@ public class BaseProfilePage extends BaseTest {
 
         User user =  users.get(0);
         super.setUp(browser); 
-        super.setUpp();
         
-        signInPage = new SignInPage(driver);
+        signInPage = new SignInPage(getDriver());
         signInPage.inputUsername(user.getUsername());
         signInPage.inputPassword(user.getPassword());
         signInPage.clickSignInButton();
 
-        profilePage = new ProfilePage(driver);
+        profilePage = new ProfilePage(getDriver());
 
         profilePage.clickProfilePictureImg();
     }

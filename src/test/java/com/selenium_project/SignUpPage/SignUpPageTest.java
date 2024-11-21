@@ -16,7 +16,7 @@ import com.selenium_project.Utilities.Excel.ExcelUtil;
 
 public class SignUpPageTest extends BaseSignUpPage {
 
-    @DataProvider(name = "excelData")
+    @DataProvider(name = "excelData", parallel = true)
     public Object[][] excelDataProvider() throws IOException {
         ExcelUtil.loadUsersFromExcel(WebsiteTestingConfigurations.ExcelFilePathSignUp);
         List<User> users = ExcelUtil.getUsers();
@@ -24,7 +24,7 @@ public class SignUpPageTest extends BaseSignUpPage {
         return new Object[][] { { users.get(1) } };
     }
 
-    @Test(dataProvider = "excelData")
+    @Test(dataProvider = "excelData", priority = 1)
     public void aenterUserNameToSignUpPage(User user) {
         signUpPage.clickCreateAccount();
         String username = user.getUsername();
@@ -32,7 +32,7 @@ public class SignUpPageTest extends BaseSignUpPage {
         assertEquals(signUpPage.getInputUsernameText(), username);
     }
 
-    @Test(dataProvider = "excelData")
+    @Test(dataProvider = "excelData", priority = 2)
     public void benterPasswordToSignUpPage(User user) {
         signUpPage.clickCreateAccount();
         signUpPage.inputUsername(user.getUsername());

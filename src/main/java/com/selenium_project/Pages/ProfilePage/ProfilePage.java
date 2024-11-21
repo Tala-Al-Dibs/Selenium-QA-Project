@@ -76,7 +76,8 @@ public class ProfilePage {
 
     public void clickSaveButton() {
         WebElement saveButton = wait.until(ExpectedConditions.elementToBeClickable(ProfilePageLocators.saveButton));
-        saveButton.click();
+        ((JavascriptExecutor) driver).executeScript("window.scrollBy(0,600);");
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", saveButton);
     }
 
     public void clickCancelButton() {

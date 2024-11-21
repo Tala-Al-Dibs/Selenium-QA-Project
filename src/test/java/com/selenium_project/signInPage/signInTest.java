@@ -16,10 +16,16 @@ import com.selenium_project.Utilities.Excel.ExcelUtil;
 
 public class signInTest extends BaseSignInPage {
 
-    @DataProvider(name = "excelData")
+    @DataProvider(name = "excelData", parallel = true)
     public Object[][] excelDataProvider() throws IOException {
         ExcelUtil.loadUsersFromExcel(WebsiteTestingConfigurations.ExcelFilePath);
         List<User> users = ExcelUtil.getUsers();
+        for (User user : users) {
+            if (user.getUsername() == null || user.getPassword() == null) {
+                throw new IllegalArgumentException("User data cannot be null: " + user);
+            }
+        }
+        
 
         return new Object[][] { { users.get(0) } };
     }

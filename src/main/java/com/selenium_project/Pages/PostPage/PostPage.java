@@ -1,6 +1,5 @@
 package com.selenium_project.Pages.PostPage;
 
-import java.io.IOException;
 import java.time.Duration;
 
 import org.openqa.selenium.Alert;
@@ -12,8 +11,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import com.selenium_project.Utilities.Configurations.WebsiteTestingConfigurations;
-import com.selenium_project.Utilities.Excel.ExcelUtil;
 import com.selenium_project.Utilities.Locators.PostLocators;
 
 public class PostPage {

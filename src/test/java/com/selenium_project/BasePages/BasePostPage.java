@@ -1,5 +1,6 @@
 package com.selenium_project.BasePages;
 
+
 import java.io.IOException;
 import java.util.List;
 
@@ -35,14 +36,13 @@ public class BasePostPage extends BaseTest{
         // Set up the WebDriver and log in
         User user = users.get(0);
         super.setUp(browser); 
-        super.setUpp();
 
-        signInPage = new SignInPage(driver);
+        signInPage = new SignInPage(getDriver());
         signInPage.inputUsername(user.getUsername());
         signInPage.inputPassword(user.getPassword());
         signInPage.clickSignInButton();
 
-        postpage = new PostPage(driver);
+        postpage = new PostPage(getDriver());
     }
 
     @DataProvider(name = "postDescriptions")

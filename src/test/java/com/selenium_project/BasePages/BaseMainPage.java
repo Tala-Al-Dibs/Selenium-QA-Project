@@ -30,12 +30,12 @@ public class BaseMainPage extends BaseTest {
         List<User> users = ExcelUtil.getUsers();
 
         User user = users.get(0);
-        signInPage = new SignInPage(driver);
+        signInPage = new SignInPage(getDriver());
         signInPage.inputUsername(user.getUsername());
         signInPage.inputPassword(user.getPassword());
         signInPage.clickSignInButton();
 
-        mainpage = new MainPage(driver);
+        mainpage = new MainPage(getDriver());
     }
 
     @AfterMethod

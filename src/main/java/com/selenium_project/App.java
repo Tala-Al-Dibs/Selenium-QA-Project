@@ -1,5 +1,10 @@
 package com.selenium_project;
 
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
 // import java.io.IOException;
 // import java.util.*;
 
@@ -19,6 +24,39 @@ public class App
 {
     public static void main( String[] args )
     {
+        Thread chromeThread = new Thread(() -> runTest("chrome"));
+        Thread firefoxThread = new Thread(() -> runTest("firefox"));
+        Thread edgeThread = new Thread(() -> runTest("edge"));
+
+        // Start all threads
+        chromeThread.start();
+        firefoxThread.start();
+        edgeThread.start();
+    }
+
+    public static void runTest(String browser) {
+        WebDriver driver = null;
+        try {
+            if (browser.equalsIgnoreCase("chrome")) {
+                driver = new ChromeDriver();
+            } else if (browser.equalsIgnoreCase("firefox")) {
+                driver = new FirefoxDriver();
+            } else if (browser.equalsIgnoreCase("edge")) {
+                driver = new EdgeDriver();
+            }
+
+            // Perform test actions
+            driver.manage().window().maximize();
+            driver.get("http://localhost:3000/profile/7");
+            System.out.println("Browser: " + browser + " - Page title is: " + driver.getTitle());
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (driver != null) {
+                driver.quit();
+            }
+        }
+    
 
         // WebDriver driver = new ChromeDriver();
         // driver.manage().window().maximize();

@@ -1,5 +1,6 @@
 package com.selenium_project.BasePages;
 
+
 import java.io.IOException;
 import java.util.List;
 
@@ -30,14 +31,13 @@ public class BaseMessagePage extends BaseTest {
 
         User user =  users.get(0);
         super.setUp(browser); 
-        super.setUpp();
         
-        signInPage = new SignInPage(driver);
+        signInPage = new SignInPage(getDriver());
         signInPage.inputUsername(user.getUsername());
         signInPage.inputPassword(user.getPassword());
         signInPage.clickSignInButton();
 
-        meassagePage = new MeassagePage(driver);
+        meassagePage = new MeassagePage(getDriver());
 
         meassagePage.clickMessageIcon();
     }

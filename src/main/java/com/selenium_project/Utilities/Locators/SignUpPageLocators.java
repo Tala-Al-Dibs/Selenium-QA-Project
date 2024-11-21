@@ -16,5 +16,6 @@ public class SignUpPageLocators {
     public static By signupInputPhoneNumber = By.id("signup-input-phoneNumber");
     public static By signupButton = By.cssSelector(".signup-button");
     public static By creatAccount = By.className("signin-link");
+    public static By signUpMeassage = By.className("signup-message");
 
 }
